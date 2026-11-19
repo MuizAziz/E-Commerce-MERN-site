@@ -22,7 +22,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="hero-banner">
+      <div className="hero-banner" style={{  background: "linear-gradient(135deg, #09090b 0%, #1c0b05 50%, #431407 100%)"
+    }}>
         <h1>Welcome to ShopNest</h1>
         <p>Discover the best products at unbeatable prices.</p>
       </div>
