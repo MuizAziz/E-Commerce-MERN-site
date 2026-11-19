@@ -1,0 +1,211 @@
+1. What is Redux Toolkit?
+
+Redux Toolkit React application ka shared data manage karta hai. Is mein data ek central store mein hota hai, jise different components easily access aur update kar sakte hain.
+Example: E-commerce website mein cart ka data Navbar, Cart page aur Checkout page mein use ho sakta hai. Redux Toolkit is data ko centrally manage karta hai.
+Why do we use it?
+- To manage shared data between different components.
+- To avoid prop drilling.
+- To access and update data easily from different components.
+Real-life Example:
+
+In an E-commerce website:
+- Navbar needs cart item count.
+- Cart page needs cart products.
+- Checkout page needs product prices.
+Redux Toolkit stores cart data centrally so all these components can access it.
+Important Terminologies
+1. Store: Central place where application state is stored.
+2. Slice: A particular section of the store, e.g., cartSlice, userSlice.
+3. Actions: Operations we want to perform, e.g., addToCart, removeFromCart.
+4. Reducers: Functions that define how state will be updated.
+5. Dispatch: Used to send an action to Redux.
+6. useSelector: Used to read data from the Redux store.
+7. useDispatch: Hook used to dispatch actions.
+
+/////////////////////////////////////////////////////////////////////////
+
+2. What is MONGODB COMMUNITY SERVER?
+
+MongoDB Community Server ek software hai jo hum apne computer par install karte hain. Iski help se hum apne computer par locally databases create aur manage kar sakte hain.We don't
+need internet connection for this.
+
+////////////////////////////////////////////////////////////////////////
+
+3.What is bcrypt JS?
+
+Bcrypt.js is a JavaScript library used in Node.js to securely hash passwords before storing them in the database.
+Example:
+Suppose a user registers with this password:
+password: "123456"
+
+Bcrypt converts it into a hashed value, something like:
+$2b$10$randomHashedPassword...
+
+This hashed password is stored in MongoDB instead of the original password.
+Important Methods
+1. bcrypt.hash() – Converts a plain password into a hashed password.
+2. bcrypt.compare() – Checks whether the entered password matches the stored hash.
+Working Flow
+Registration: User Password → bcrypt.hash() → Hashed Password → MongoDB
+Login:Entered Password + Stored Hash → bcrypt.compare() → Match or Not Match
+
+////////////////////////////////////////////////////////////////////////
+
+4. Cloudinary
+Definition: A cloud-based service used to upload and store images and videos.
+
+Example: When an admin adds a product, its image is uploaded to Cloudinary, and its URL is saved in MongoDB.
+
+Roman Urdu: Product ki images ko cloud par store karta hai.
+
+////////////////////////////////////////////////////////////////////////
+
+5. CORS
+Definition: CORS (Cross-Origin Resource Sharing) allows or restricts requests between different origins (domains/ports).
+
+Example: Your React frontend runs on port 5173, while your Node.js backend runs on port 3000. CORS allows the frontend to communicate with the backend.
+app.use(cors());
+Roman Urdu: Frontend aur backend different ports par hon to unke darmiyan communication allow karta hai.
+
+////////////////////////////////////////////////////////////////////////
+
+6. dotenv
+Definition: A package used to load environment variables from a .env file.
+
+Example: Store MongoDB connection URL and secret keys in .env instead of writing them directly in code.
+require("dotenv").config();
+
+const PORT = process.env.PORT;
+Roman Urdu: Sensitive information aur configuration values ko .env file mein rakhne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+7. Express
+Definition: A Node.js framework used to create APIs, routes, and handle HTTP requests and responses.
+
+Example: Creating an API to get all products.
+app.get("/products", getAllProducts);
+Roman Urdu: Backend mein APIs aur routes banane aur requests handle karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+8. jsonwebtoken (JWT)
+Definition: A library used to create and verify tokens for user authentication.
+
+Example: After login, the server generates a JWT token and sends it to the user.
+const token = jwt.sign(
+  { userId: user._id },
+  process.env.JWT_SECRET
+);
+Roman Urdu: Login ke baad user ko authentication token dene aur verify karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+9. Mongoose
+Definition: An ODM (Object Data Modeling) library used to interact with MongoDB using JavaScript.
+
+Example: Creating a product schema and saving product data.
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number
+});
+Roman Urdu: MongoDB ke saath JavaScript objects aur schemas ki help se kaam karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+10. Multer
+Definition: A middleware used to handle file uploads in Node.js and Express.
+Multer handles file uploads and makes the uploaded file available through req.file
+Example: When an admin selects a product image, Multer handles the uploaded file before sending it to Cloudinary.
+const upload = multer({ storage: multer.memoryStorage() });
+Roman Urdu: User se images ya files receive aur handle karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+11. Nodemailer
+Definition: A library used to send emails from a Node.js application.
+
+Example: Sending an order confirmation email to a customer after placing an order.
+await transporter.sendMail({
+  to: "user@gmail.com",
+  subject: "Order Confirmed",
+  text: "Your order has been placed!"
+});
+Roman Urdu: Backend se users ko emails send karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+12. Razorpay
+Definition: A payment gateway used to accept online payments through different payment methods.
+
+Example: When a customer clicks the Pay Now button, Razorpay handles the payment process.
+
+Roman Urdu: E-commerce website mein customers se online payments receive karne ke liye use hota hai.
+
+////////////////////////////////////////////////////////////////////////
+
+13. What is ROUTER and its use?
+Router ka simple kaam hai API routes ko alag files mein manage karna aur request ko correct controller tak pohanchana.
+
+Chalo real-life example se samajhte hain.
+
+Socho tumhara E-Commerce store ek shopping mall hai.
+- Customer login karna chahta hai.
+- Customer products dekhna chahta hai.
+- Admin product add karna chahta hai.
+Ab hum in sab APIs ko ek hi file mein nahi likhte. Hum inke separate routers banate hain.
+1. Router kyun banate hain?
+Taake code organized rahe aur har type ki API apni separate file mein ho.
+
+Example:
+routes/
+   authRoutes.js
+   productRoutes.js
+   orderRoutes.js
+
+////////////////////////////////////////////////////////////////////////
+
+14. Salt in bcrypt?
+Salt ek random value hoti hai jo password hash karne se pehle uske saath add ki jati hai.
+Example : Agar user A and user B dono ka password same hy  to hashed password bhi  same hi hoga
+es liye SALT ki help sy hm random values add krdete hain . Es waja sy dono passwords different ho jaty hain.
+
+////////////////////////////////////////////////////////////////////////
+
+15. Why do we need authContext.jsx?
+Imagine a user logs into ShopNest.
+
+After login, your application needs to know:
+- Who is logged in?
+- Is the user an admin or a normal customer?
+- Should the Navbar show Login or Logout?
+- Should the user be allowed to open the Admin Dashboard?
+- What should happen when the user logs out?
+Now imagine your application has 20 different components, and all of them need information about the logged-in user.
+
+One solution is to pass user data through props, but this becomes difficult.
+
+Context API solves this problem.
+
+It allows you to share data with multiple components without manually passing props through every component.
+
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+ PRODUCTS API'S SETUP EXPLAINED
+ 1. First I made the base route for products in index.js
+ app.use('/api/products' , require('./routes/productRoutes'))
+
+ 2. Agar Products ka concept samjha jye to ye basic CRUD jese hi kam krta hy. Like hm user ko products show krty hain so for that we made "getProducts" which is READ . Phir admin(middleware) product create krta hy 
+ which is CREATE esky liye "createProduct" function hy. Esi trha PATCH kyliye "updateProduct" and DELETE ky liye "deleteProduct" function hy. And kisi product ko id sy call krny ky liye getProductById function.
+
+ 3. Now jb hmary pas koi product hoga to obviously us product ka koi name , description , rating etc
+ hogi to un cheezo ko define krny ky liye hm ny product ka schema and model bnaya hy.
+
+  ORDERS API'S SETUP EXPLAINED
+  1. Simply routes banao then eska model banao
